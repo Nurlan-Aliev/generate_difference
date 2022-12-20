@@ -1,11 +1,10 @@
-import json
+from gendiff.opening import open_file
 
 
 def generate_diff(first_file, second_file):
-    open_first = json.load(open(first_file))
-    open_second = json.load(open(second_file))
-    all_keys = open_first.keys() | open_second.keys()
-    list_keys = list(all_keys)
+    open_first = open_file(first_file)
+    open_second = open_file(second_file)
+    list_keys = list(open_first.keys() | open_second.keys())
     list_keys.sort()
     result = '{\n'
     for key in list_keys:
