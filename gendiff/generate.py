@@ -1,7 +1,7 @@
 import json
 
 
-def gen_diff(first_file, second_file):
+def generate_diff(first_file, second_file):
     open_first = json.load(open(first_file))
     open_second = json.load(open(second_file))
     all_keys = open_first.keys() | open_second.keys()
@@ -26,4 +26,3 @@ def bool_to_str(value) -> str:
     if isinstance(value, bool):
         return str(value).lower()
     return value
-
