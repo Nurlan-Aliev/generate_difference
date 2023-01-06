@@ -1,10 +1,12 @@
 from gendiff.generate import generate_diff
+from gendiff.formarter.stylish import stylish
 
 
 first_json = 'tests/fixtures/file1.json'
 second_json = 'tests/fixtures/file2.json'
 first_yaml = 'tests/fixtures/first_file.yaml'
 second_yaml = 'tests/fixtures/second_file.yaml'
+free_json = 'tests/fixtures/free.json'
 result = '''{
   - follow: false
     host: hexlet.io
@@ -65,24 +67,24 @@ result_tree = '''{
 
 
 def test_generate_diff():
-    assert generate_diff(first_json, second_json) == result
-    assert generate_diff(first_yaml, second_yaml) == result
-    assert generate_diff(first_json, second_yaml) == result
-    assert generate_diff('tests/fixtures/free.json', second_json) == '''{
+    assert generate_diff(first_json, second_json, stylish) == result
+    assert generate_diff(first_yaml, second_yaml, stylish) == result
+    assert generate_diff(first_json, second_yaml, stylish) == result
+    assert generate_diff(free_json, second_json, stylish) == '''{
   + host: hexlet.io
   + timeout: 20
   + verbose: true
 }'''
 
-    assert generate_diff(first_json, 'tests/fixtures/free.json') == '''{
+    assert generate_diff(first_json, free_json, stylish) == '''{
   - follow: false
   - host: hexlet.io
   - proxy: 123.234.53.22
   - timeout: 50
 }'''
-    assert generate_diff(first_tree_json, second_tree_json) == result_tree
-    assert generate_diff(first_tree_yaml, second_tree_yaml) == result_tree
-    assert generate_diff(first_tree_json, second_tree_yaml) == result_tree
+    assert generate_diff(first_tree_json, second_tree_json, stylish) == result_tree
+    assert generate_diff(first_tree_yaml, second_tree_yaml, stylish) == result_tree
+    assert generate_diff(first_tree_json, second_tree_yaml, stylish) == result_tree
 
 
 if __name__ == '__main__':
