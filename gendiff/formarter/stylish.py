@@ -3,36 +3,35 @@ import itertools
 
 DEPTH_LINE = '    '
 LVL = 1
+RM = '  - '
+ADD = '  + '
 
 
 # Стиль
-def stylish(tree) -> str:
+def stylish(tree, depth=0) -> str:
 
-    def inner_(node, depth):
+    if not isinstance(tree, list):
+        return tree
 
-        if not isinstance(node, list):
-            return node
+    deep_indent_size = DEPTH_LINE * depth
+    lists = []
 
-        deep_indent_size = DEPTH_LINE * depth
-        lists = []
+    for index in tree:
+        name, status, value = index
 
-        for index in node:
-            name, status, value = index
+        if status == 'updated':
 
-            if isinstance(value, tuple):
-                lists.append(f'{deep_indent_size}  - {name}:'
-                             f' {inner_(value[0], depth + LVL)}')
-                lists.append(f'{deep_indent_size}  + {name}:'
-                             f' {inner_(value[1], depth + LVL)}')
+            lists.append(f'{deep_indent_size}{RM}{name}:'
+                         f' {stylish(value[0], depth + LVL)}')
+            lists.append(f'{deep_indent_size}{ADD}{name}:'
+                         f' {stylish(value[1], depth + LVL)}')
 
-            else:
-                lists.append(f'{deep_indent_size}{refactor(status)}{name}:'
-                             f' {inner_(value, depth + LVL)}')
+        else:
+            lists.append(f'{deep_indent_size}{refactor(status)}{name}:'
+                         f' {stylish(value, depth + LVL)}')
 
-        result = itertools.chain('{', lists, [deep_indent_size + '}'])
-        return '\n'.join(result)
-
-    return inner_(tree, 0)
+    result = itertools.chain('{', lists, [deep_indent_size + '}'])
+    return '\n'.join(result)
 
 
 def refactor(status):
