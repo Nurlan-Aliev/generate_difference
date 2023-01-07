@@ -5,6 +5,8 @@ ADD = 'added'
 RM = 'removed'
 NOT_CHANGE = 'not_change'
 UPDATE = 'updated'
+STATUS = 'STATUS'
+VALUE = 'VALUE'
 
 
 def generate_diff(first_file, second_file, style):
@@ -15,33 +17,24 @@ def generate_diff(first_file, second_file, style):
     return result
 
 
-# Перевод None в null, bool в str
-def value_to_str(value):
-
-    if isinstance(value, bool):
-        return str(value).lower()
-
-    elif value is None:
-        return 'null'
-
-    return value
-
-
 # Расскрытие словарей
 def check(value, value2=None):
 
-    if value2 is None:
-        value2 = value
-
-    if isinstance(value, dict):
+    if is_dict(value):
+        if value2 is None:
+            value2 = value
         return difference(value, value2)
 
     else:
-        return value_to_str(value)
+        return value
+
+
+def is_dict(items):
+    return isinstance(items, dict)
 
 
 # Вычеслитель различий
-def difference(dict_1: dict, dict_2: dict) -> list:
+def difference(dict_1, dict_2) -> list:
 
     list_keys = list(dict_1.keys() | dict_2.keys())
     list_keys.sort()
@@ -53,16 +46,18 @@ def difference(dict_1: dict, dict_2: dict) -> list:
         value_2 = dict_2.get(key)
 
         if key not in dict_1:
-            result.append((key, ADD, check(value_2)))
+            result.append({key: {STATUS: ADD, VALUE: check(value_2)}})
 
         elif key not in dict_2:
-            result.append((key, RM, check(value_1)))
+            result.append({key: {STATUS: RM, VALUE: check(value_1)}})
 
         elif value_1 == value_2 or \
                 isinstance(value_1, dict) and isinstance(value_2, dict):
-            result.append((key, NOT_CHANGE, check(value_1, value_2)))
+            result.append({key: {STATUS: NOT_CHANGE,
+                                 VALUE: check(value_1, value_2)}})
 
         else:
-            result.append((key, UPDATE, (check(value_1), check(value_2))))
+            result.append({key: {STATUS: UPDATE,
+                                 VALUE: (check(value_1), check(value_2))}})
 
     return result

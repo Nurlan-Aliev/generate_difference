@@ -1,0 +1,187 @@
+[
+  {
+    "common": {
+      "STATUS": "not_change",
+      "VALUE": [
+        {
+          "follow": {
+            "STATUS": "added",
+            "VALUE": false
+          }
+        },
+        {
+          "setting1": {
+            "STATUS": "not_change",
+            "VALUE": "Value 1"
+          }
+        },
+        {
+          "setting2": {
+            "STATUS": "removed",
+            "VALUE": 200
+          }
+        },
+        {
+          "setting3": {
+            "STATUS": "updated",
+            "VALUE": [
+              true,
+              null
+            ]
+          }
+        },
+        {
+          "setting4": {
+            "STATUS": "added",
+            "VALUE": "blah blah"
+          }
+        },
+        {
+          "setting5": {
+            "STATUS": "added",
+            "VALUE": [
+              {
+                "key5": {
+                  "STATUS": "not_change",
+                  "VALUE": "value5"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "setting6": {
+            "STATUS": "not_change",
+            "VALUE": [
+              {
+                "doge": {
+                  "STATUS": "not_change",
+                  "VALUE": [
+                    {
+                      "wow": {
+                        "STATUS": "updated",
+                        "VALUE": [
+                          "",
+                          "so much"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "key": {
+                  "STATUS": "not_change",
+                  "VALUE": "value"
+                }
+              },
+              {
+                "ops": {
+                  "STATUS": "added",
+                  "VALUE": "vops"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "group1": {
+      "STATUS": "not_change",
+      "VALUE": [
+        {
+          "baz": {
+            "STATUS": "updated",
+            "VALUE": [
+              "bas",
+              "bars"
+            ]
+          }
+        },
+        {
+          "foo": {
+            "STATUS": "not_change",
+            "VALUE": "bar"
+          }
+        },
+        {
+          "nest": {
+            "STATUS": "updated",
+            "VALUE": [
+              [
+                {
+                  "key": {
+                    "STATUS": "not_change",
+                    "VALUE": "value"
+                  }
+                }
+              ],
+              "str"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "group2": {
+      "STATUS": "removed",
+      "VALUE": [
+        {
+          "abc": {
+            "STATUS": "not_change",
+            "VALUE": 12345
+          }
+        },
+        {
+          "deep": {
+            "STATUS": "not_change",
+            "VALUE": [
+              {
+                "id": {
+                  "STATUS": "not_change",
+                  "VALUE": 45
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "group3": {
+      "STATUS": "added",
+      "VALUE": [
+        {
+          "deep": {
+            "STATUS": "not_change",
+            "VALUE": [
+              {
+                "id": {
+                  "STATUS": "not_change",
+                  "VALUE": [
+                    {
+                      "number": {
+                        "STATUS": "not_change",
+                        "VALUE": 45
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "fee": {
+            "STATUS": "not_change",
+            "VALUE": 100500
+          }
+        }
+      ]
+    }
+  }
+]

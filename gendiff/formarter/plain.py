@@ -1,3 +1,6 @@
+from gendiff.formarter.stylish import to_str
+
+
 def plain(tree):
     result = build_way(tree, [])
 
@@ -21,35 +24,41 @@ def plain(tree):
 
 
 def list_to_complex(value):
-    if isinstance(value, list):
+    if is_list(value):
         return '[complex value]'
-    if value == 'true' or value == 'null' or value == 'false':
-        return value
+    if isinstance(value, bool) or value is None:
+        return to_str(value)
     return f"'{value}'"
 
 
 def build_way(tree, list_way):
     lst = []
 
-    for i in tree:
-        name, status, value = i
-        list_way.append(name)
+    for index in tree:
+        for name in index:
+            list_way.append(name)
+            value = index[name]['VALUE']
+            status = index[name]['STATUS']
 
-        if status == 'not_change' and isinstance(value, list):
-            lst.append(build_way(value, list_way))
-            list_way.pop(-1)
+            if status == 'not_change' and is_list(value):
+                lst.append(build_way(value, list_way))
+                list_way.pop(-1)
 
-        else:
-            str_way = '.'.join(list_way)
-            list_way.pop(-1)
-            lst.append((str_way, status, value))
+            else:
+                str_way = '.'.join(list_way)
+                list_way.pop(-1)
+                lst.append((str_way, status, value))
 
     return flatten(lst)
 
 
 def normalize(item):
-    return flatten(item) if isinstance(item, list) else [item]
+    return flatten(item) if is_list(item) else [item]
 
 
 def flatten(tree):
     return sum(map(normalize, tree), [])
+
+
+def is_list(value):
+    return isinstance(value, list)

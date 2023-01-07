@@ -5,4 +5,4 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b446b81f1d5f47f4bc24/maintainability)](https://codeclimate.com/github/Nurlan-Aliev/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b446b81f1d5f47f4bc24/test_coverage)](https://codeclimate.com/github/Nurlan-Aliev/python-project-50/test_coverage)
 
-[![asciicast](https://asciinema.org/a/iXyVQ4jveHNrzxrqWPkLUSJwi.svg)](https://asciinema.org/a/iXyVQ4jveHNrzxrqWPkLUSJwi)
+[![asciicast](https://asciinema.org/a/8W4EZsgqduZMrZniN9JRbhtAw.svg)](https://asciinema.org/a/8W4EZsgqduZMrZniN9JRbhtAw)
