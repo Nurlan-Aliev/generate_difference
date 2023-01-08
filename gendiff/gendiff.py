@@ -1,5 +1,7 @@
 from gendiff.opening import open_file
 from gendiff.formarter.stylish import stylish
+from gendiff.formarter.plain import plain
+from gendiff.formarter.json_formater import json_
 
 ADD = 'added'
 RM = 'removed'
@@ -13,8 +15,12 @@ def generate_diff(first_file, second_file, style=stylish):
     open_first = open_file(first_file)
     open_second = open_file(second_file)
     diff = difference(open_first, open_second)
-    result = style(diff)
-    return result
+    if style == 'plain':
+        return plain(diff)
+    elif style == 'json':
+        return json_(diff)
+    elif style == 'stylish':
+        return stylish(diff)
 
 
 # Расскрытие словарей
