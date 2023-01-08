@@ -1,5 +1,4 @@
 from gendiff.gendiff import generate_diff
-from gendiff.formarter.plain import plain
 
 
 first_tree_json = 'tests/fixtures/filepath1.json'
@@ -21,8 +20,8 @@ Property 'group3' was added with value: [complex value]'''
 
 
 def test_plain():
-    assert generate_diff(first_tree_json, second_tree_json, plain) == result_tree
-    assert generate_diff(first_tree_yaml, second_tree_yaml, plain) == result_tree
+    assert generate_diff(first_tree_json, second_tree_json, 'plain') == result_tree
+    assert generate_diff(first_tree_yaml, second_tree_yaml, 'plain') == result_tree
 
 
 if __name__ == '__main__':
