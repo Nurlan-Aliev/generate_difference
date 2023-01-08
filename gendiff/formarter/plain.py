@@ -26,7 +26,7 @@ def plain(tree):
 def list_to_complex(value):
     if is_list(value):
         return '[complex value]'
-    if isinstance(value, bool) or value is None:
+    if isinstance(value, bool) or value is None or isinstance(value, int):
         return to_str(value)
     return f"'{value}'"
 
