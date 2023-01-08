@@ -81,9 +81,9 @@ def test_generate_diff():
   - proxy: 123.234.53.22
   - timeout: 50
 }'''
-    assert generate_diff(first_tree_json, second_tree_json, 'stylish') == result_tree
-    assert generate_diff(first_tree_yaml, second_tree_yaml, 'stylish') == result_tree
-    assert generate_diff(first_tree_json, second_tree_yaml, 'stylish') == result_tree
+    assert generate_diff(first_tree_json, second_tree_json) == result_tree
+    assert generate_diff(first_tree_yaml, second_tree_yaml) == result_tree
+    assert generate_diff(first_tree_json, second_tree_yaml) == result_tree
 
 
 if __name__ == '__main__':
