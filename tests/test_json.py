@@ -1,5 +1,5 @@
 from gendiff.formarter.json_formater import json_
-from gendiff.generate import generate_diff
+from gendiff.gendiff import generate_diff
 
 
 first_json = 'tests/fixtures/filepath1.json'

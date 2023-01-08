@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import argparse
-from gendiff.generate import generate_diff
+from gendiff.gendiff import generate_diff
 from gendiff.formarter.stylish import stylish
 from gendiff.formarter.plain import plain
 from gendiff.formarter.json_formater import json_ as json
