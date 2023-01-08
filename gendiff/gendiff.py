@@ -1,5 +1,5 @@
 from gendiff.opening import open_file
-
+from gendiff.formarter.stylish import stylish
 
 ADD = 'added'
 RM = 'removed'
@@ -9,7 +9,7 @@ STATUS = 'status'
 VALUE = 'value'
 
 
-def generate_diff(first_file, second_file, style):
+def generate_diff(first_file, second_file, style=stylish):
     open_first = open_file(first_file)
     open_second = open_file(second_file)
     diff = difference(open_first, open_second)
