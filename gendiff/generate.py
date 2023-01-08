@@ -5,8 +5,8 @@ ADD = 'added'
 RM = 'removed'
 NOT_CHANGE = 'not_change'
 UPDATE = 'updated'
-STATUS = 'STATUS'
-VALUE = 'VALUE'
+STATUS = 'status'
+VALUE = 'value'
 
 
 def generate_diff(first_file, second_file, style):
@@ -51,8 +51,7 @@ def difference(dict_1, dict_2) -> list:
         elif key not in dict_2:
             result.append({key: {STATUS: RM, VALUE: check(value_1)}})
 
-        elif value_1 == value_2 or \
-                isinstance(value_1, dict) and isinstance(value_2, dict):
+        elif value_1 == value_2 or is_dict(value_1) and is_dict(value_2):
             result.append({key: {STATUS: NOT_CHANGE,
                                  VALUE: check(value_1, value_2)}})
 

@@ -1,10 +1,12 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "for generate difference between two files (json or yaml)"
 authors = ["Aliev Nurlan <nualiev420@gmail.com>"]
 readme = "README.md"
 packages = [{include = "gendiff"}]
+repository = "https://github.com/Nurlan-Aliev/python-project-50"
+classifiers = ["Topic :: system :: filesystems"]
 
 [tool.poetry.dependencies]
 python = "^3.8.1"

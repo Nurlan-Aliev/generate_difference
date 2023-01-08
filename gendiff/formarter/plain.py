@@ -37,8 +37,8 @@ def build_way(tree, list_way):
     for index in tree:
         for name in index:
             list_way.append(name)
-            value = index[name]['VALUE']
-            status = index[name]['STATUS']
+            value = index[name]['value']
+            status = index[name]['status']
 
             if status == 'not_change' and is_list(value):
                 lst.append(build_way(value, list_way))

@@ -1,4 +1,4 @@
-from gendiff.formarter.json_format import json_
+from gendiff.formarter.json_formater import json_
 from gendiff.generate import generate_diff
 
 

@@ -13,36 +13,35 @@ def stylish(tree, depth=0) -> str:
     if not isinstance(tree, list):
         return tree
 
-    deep_indent_size = DEPTH_LINE * depth
-    lists = []
+    deep_size = DEPTH_LINE * depth
+    lst = []
 
     for index in tree:
         for name in index:
-            value = index[name]['VALUE']
-            status = index[name]['STATUS']
+            value = index[name]['value']
+            status = index[name]['status']
 
             if status == 'updated':
-
-                lists.append(f'{deep_indent_size}{RM}{name}:'
-                             f' {stylish(to_str(value[0]), depth + LVL)}')
-                lists.append(f'{deep_indent_size}{ADD}{name}:'
-                             f' {stylish(to_str(value[1]), depth + LVL)}')
+                lst.append(f'{deep_size}{RM}{name}:'
+                           f' {stylish(to_str(value[0]), depth + LVL)}')
+                lst.append(f'{deep_size}{ADD}{name}:'
+                           f' {stylish(to_str(value[1]), depth + LVL)}')
 
             else:
-                lists.append(f'{deep_indent_size}{refactor(status)}{name}:'
-                             f' {stylish(to_str(value), depth + LVL)}')
+                lst.append(f'{deep_size}{refactor(status)}{name}:'
+                           f' {stylish(to_str(value), depth + LVL)}')
 
-    result = itertools.chain('{', lists, [deep_indent_size + '}'])
+    result = itertools.chain('{', lst, [deep_size + '}'])
     return '\n'.join(result)
 
 
 def refactor(status):
     if status == 'added':
-        return '  + '
+        return ADD
     if status == 'removed':
-        return '  - '
+        return RM
     if status == 'not_change':
-        return '    '
+        return DEPTH_LINE
 
 
 # Перевод None в null, bool в str

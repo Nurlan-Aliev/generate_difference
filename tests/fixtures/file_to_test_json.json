@@ -1,30 +1,30 @@
 [
   {
     "common": {
-      "STATUS": "not_change",
-      "VALUE": [
+      "status": "not_change",
+      "value": [
         {
           "follow": {
-            "STATUS": "added",
-            "VALUE": false
+            "status": "added",
+            "value": false
           }
         },
         {
           "setting1": {
-            "STATUS": "not_change",
-            "VALUE": "Value 1"
+            "status": "not_change",
+            "value": "Value 1"
           }
         },
         {
           "setting2": {
-            "STATUS": "removed",
-            "VALUE": 200
+            "status": "removed",
+            "value": 200
           }
         },
         {
           "setting3": {
-            "STATUS": "updated",
-            "VALUE": [
+            "status": "updated",
+            "value": [
               true,
               null
             ]
@@ -32,18 +32,18 @@
         },
         {
           "setting4": {
-            "STATUS": "added",
-            "VALUE": "blah blah"
+            "status": "added",
+            "value": "blah blah"
           }
         },
         {
           "setting5": {
-            "STATUS": "added",
-            "VALUE": [
+            "status": "added",
+            "value": [
               {
                 "key5": {
-                  "STATUS": "not_change",
-                  "VALUE": "value5"
+                  "status": "not_change",
+                  "value": "value5"
                 }
               }
             ]
@@ -51,16 +51,16 @@
         },
         {
           "setting6": {
-            "STATUS": "not_change",
-            "VALUE": [
+            "status": "not_change",
+            "value": [
               {
                 "doge": {
-                  "STATUS": "not_change",
-                  "VALUE": [
+                  "status": "not_change",
+                  "value": [
                     {
                       "wow": {
-                        "STATUS": "updated",
-                        "VALUE": [
+                        "status": "updated",
+                        "value": [
                           "",
                           "so much"
                         ]
@@ -71,14 +71,14 @@
               },
               {
                 "key": {
-                  "STATUS": "not_change",
-                  "VALUE": "value"
+                  "status": "not_change",
+                  "value": "value"
                 }
               },
               {
                 "ops": {
-                  "STATUS": "added",
-                  "VALUE": "vops"
+                  "status": "added",
+                  "value": "vops"
                 }
               }
             ]
@@ -89,12 +89,12 @@
   },
   {
     "group1": {
-      "STATUS": "not_change",
-      "VALUE": [
+      "status": "not_change",
+      "value": [
         {
           "baz": {
-            "STATUS": "updated",
-            "VALUE": [
+            "status": "updated",
+            "value": [
               "bas",
               "bars"
             ]
@@ -102,19 +102,19 @@
         },
         {
           "foo": {
-            "STATUS": "not_change",
-            "VALUE": "bar"
+            "status": "not_change",
+            "value": "bar"
           }
         },
         {
           "nest": {
-            "STATUS": "updated",
-            "VALUE": [
+            "status": "updated",
+            "value": [
               [
                 {
                   "key": {
-                    "STATUS": "not_change",
-                    "VALUE": "value"
+                    "status": "not_change",
+                    "value": "value"
                   }
                 }
               ],
@@ -127,22 +127,22 @@
   },
   {
     "group2": {
-      "STATUS": "removed",
-      "VALUE": [
+      "status": "removed",
+      "value": [
         {
           "abc": {
-            "STATUS": "not_change",
-            "VALUE": 12345
+            "status": "not_change",
+            "value": 12345
           }
         },
         {
           "deep": {
-            "STATUS": "not_change",
-            "VALUE": [
+            "status": "not_change",
+            "value": [
               {
                 "id": {
-                  "STATUS": "not_change",
-                  "VALUE": 45
+                  "status": "not_change",
+                  "value": 45
                 }
               }
             ]
@@ -153,20 +153,20 @@
   },
   {
     "group3": {
-      "STATUS": "added",
-      "VALUE": [
+      "status": "added",
+      "value": [
         {
           "deep": {
-            "STATUS": "not_change",
-            "VALUE": [
+            "status": "not_change",
+            "value": [
               {
                 "id": {
-                  "STATUS": "not_change",
-                  "VALUE": [
+                  "status": "not_change",
+                  "value": [
                     {
                       "number": {
-                        "STATUS": "not_change",
-                        "VALUE": 45
+                        "status": "not_change",
+                        "value": 45
                       }
                     }
                   ]
@@ -177,8 +177,8 @@
         },
         {
           "fee": {
-            "STATUS": "not_change",
-            "VALUE": 100500
+            "status": "not_change",
+            "value": 100500
           }
         }
       ]
