@@ -1,11 +1,11 @@
-from gendiff.opening import open_file
+from gendiff.utils import open_file
 from gendiff.formarter.stylish import stylish
 from gendiff.formarter.plain import plain
 from gendiff.formarter.json_formater import json_
 
 ADD = 'added'
 RM = 'removed'
-NOT_CHANGE = 'not_change'
+NOT_CHANGE = 'not_changed'
 UPDATE = 'updated'
 STATUS = 'status'
 VALUE = 'value'
@@ -14,7 +14,7 @@ VALUE = 'value'
 def generate_diff(first_file, second_file, style='stylish'):
     open_first = open_file(first_file)
     open_second = open_file(second_file)
-    diff = difference(open_first, open_second)
+    diff = build_base(open_first, open_second)
     if style == 'plain':
         return plain(diff)
     elif style == 'json':
@@ -23,25 +23,26 @@ def generate_diff(first_file, second_file, style='stylish'):
         return stylish(diff)
 
 
-# Расскрытие словарей
-def check(value, value2=None):
-
-    if is_dict(value):
-        if value2 is None:
-            value2 = value
-        return difference(value, value2)
+def check(value_1, value_2=None):
+    """Returns the difference function with the received value
+    if the value1  is a dictionary. Otherwise returns a value.
+    """
+    if is_dict(value_1):
+        if value_2 is None:
+            value_2 = value_1
+        return build_base(value_1, value_2)
 
     else:
-        return value
+        return value_1
 
 
 def is_dict(items):
+    """Сhecks if an element is a dictionary"""
     return isinstance(items, dict)
 
 
-# Вычеслитель различий
-def difference(dict_1, dict_2) -> list:
-
+def build_base(dict_1: dict, dict_2) -> list:
+    """Return a list of dictionaries with key, difference status and value"""
     list_keys = list(dict_1.keys() | dict_2.keys())
     list_keys.sort()
     result = []

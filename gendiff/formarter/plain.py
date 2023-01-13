@@ -1,7 +1,7 @@
-from gendiff.formarter.stylish import to_str
+from gendiff.formarter.stylish import make_str
 
 
-def plain(tree):
+def plain(tree: list) -> str:
     result = build_way(tree, [])
 
     lst = []
@@ -10,7 +10,7 @@ def plain(tree):
 
         if status == 'added':
             lst.append(f"Property '{name}' "
-                       f"was added with value: {list_to_complex(value)}")
+                       f"was added with value: {check_type(value)}")
 
         if status == 'removed':
             lst.append(f"Property '{name}' was removed")
@@ -18,16 +18,18 @@ def plain(tree):
         if status == 'updated':
             rm, add = value
             lst.append(f"Property '{name}' was updated. "
-                       f"From {list_to_complex(rm)} to {list_to_complex(add)}")
+                       f'From {check_type(rm)} to {check_type(add)}')
 
     return '\n'.join(lst)
 
 
-def list_to_complex(value):
+def check_type(value):
     if is_list(value):
         return '[complex value]'
-    if isinstance(value, bool) or value is None or isinstance(value, int):
-        return to_str(value)
+
+    if isinstance(value, (bool, int)) or value is None:
+        return make_str(value)
+
     return f"'{value}'"
 
 
@@ -40,7 +42,7 @@ def build_way(tree, list_way):
             value = index[name]['value']
             status = index[name]['status']
 
-            if status == 'not_change' and is_list(value):
+            if status == 'not_changed' and is_list(value):
                 lst.append(build_way(value, list_way))
                 list_way.pop(-1)
 

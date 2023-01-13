@@ -7,32 +7,33 @@ RM = '  - '
 ADD = '  + '
 
 
-# Стиль
-def stylish(tree, depth=0) -> str:
+def stylish(tree: list) -> str:
 
-    if not isinstance(tree, list):
-        return tree
+    def inner(node, depth=0):
+        if not isinstance(node, list):
+            return node
 
-    deep_size = DEPTH_LINE * depth
-    lst = []
+        deep_size = DEPTH_LINE * depth
+        result = []
 
-    for index in tree:
-        for name in index:
-            value = index[name]['value']
-            status = index[name]['status']
+        for index in node:
+            for name in index:
+                value = index[name]['value']
+                status = index[name]['status']
 
-            if status == 'updated':
-                lst.append(f'{deep_size}{RM}{name}:'
-                           f' {stylish(to_str(value[0]), depth + LVL)}')
-                lst.append(f'{deep_size}{ADD}{name}:'
-                           f' {stylish(to_str(value[1]), depth + LVL)}')
+                if status == 'updated':
+                    result.append(f'{deep_size}{RM}{name}:'
+                                  f' {inner(make_str(value[0]), depth + LVL)}')
+                    result.append(f'{deep_size}{ADD}{name}:'
+                                  f' {inner(make_str(value[1]), depth + LVL)}')
 
-            else:
-                lst.append(f'{deep_size}{refactor(status)}{name}:'
-                           f' {stylish(to_str(value), depth + LVL)}')
+                else:
+                    result.append(f'{deep_size}{refactor(status)}{name}:'
+                                  f' {inner(make_str(value), depth + LVL)}')
 
-    result = itertools.chain('{', lst, [deep_size + '}'])
-    return '\n'.join(result)
+        return '\n'.join(itertools.chain('{', result, [deep_size + '}']))
+
+    return inner(tree)
 
 
 def refactor(status):
@@ -40,13 +41,12 @@ def refactor(status):
         return ADD
     if status == 'removed':
         return RM
-    if status == 'not_change':
+    if status == 'not_changed':
         return DEPTH_LINE
 
 
-# Перевод None в null, bool в str
-def to_str(value):
-
+def make_str(value):
+    """Casts None to null, bool to str"""
     if isinstance(value, bool):
         return str(value).lower()
 

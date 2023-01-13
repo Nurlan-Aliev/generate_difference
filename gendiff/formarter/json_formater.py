@@ -1,5 +1,5 @@
 import json
 
 
-def json_(lst) -> json:
-    return json.dumps(lst, indent=2)
+def json_(tree) -> json:
+    return json.dumps(tree, indent=2)

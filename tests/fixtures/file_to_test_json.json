@@ -1,7 +1,7 @@
 [
   {
     "common": {
-      "status": "not_change",
+      "status": "not_changed",
       "value": [
         {
           "follow": {
@@ -11,7 +11,7 @@
         },
         {
           "setting1": {
-            "status": "not_change",
+            "status": "not_changed",
             "value": "Value 1"
           }
         },
@@ -42,7 +42,7 @@
             "value": [
               {
                 "key5": {
-                  "status": "not_change",
+                  "status": "not_changed",
                   "value": "value5"
                 }
               }
@@ -51,11 +51,11 @@
         },
         {
           "setting6": {
-            "status": "not_change",
+            "status": "not_changed",
             "value": [
               {
                 "doge": {
-                  "status": "not_change",
+                  "status": "not_changed",
                   "value": [
                     {
                       "wow": {
@@ -71,7 +71,7 @@
               },
               {
                 "key": {
-                  "status": "not_change",
+                  "status": "not_changed",
                   "value": "value"
                 }
               },
@@ -89,7 +89,7 @@
   },
   {
     "group1": {
-      "status": "not_change",
+      "status": "not_changed",
       "value": [
         {
           "baz": {
@@ -102,7 +102,7 @@
         },
         {
           "foo": {
-            "status": "not_change",
+            "status": "not_changed",
             "value": "bar"
           }
         },
@@ -113,7 +113,7 @@
               [
                 {
                   "key": {
-                    "status": "not_change",
+                    "status": "not_changed",
                     "value": "value"
                   }
                 }
@@ -131,17 +131,17 @@
       "value": [
         {
           "abc": {
-            "status": "not_change",
+            "status": "not_changed",
             "value": 12345
           }
         },
         {
           "deep": {
-            "status": "not_change",
+            "status": "not_changed",
             "value": [
               {
                 "id": {
-                  "status": "not_change",
+                  "status": "not_changed",
                   "value": 45
                 }
               }
@@ -157,15 +157,15 @@
       "value": [
         {
           "deep": {
-            "status": "not_change",
+            "status": "not_changed",
             "value": [
               {
                 "id": {
-                  "status": "not_change",
+                  "status": "not_changed",
                   "value": [
                     {
                       "number": {
-                        "status": "not_change",
+                        "status": "not_changed",
                         "value": 45
                       }
                     }
@@ -177,7 +177,7 @@
         },
         {
           "fee": {
-            "status": "not_change",
+            "status": "not_changed",
             "value": 100500
           }
         }
