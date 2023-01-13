@@ -9,7 +9,7 @@ def result_tree():
 
 
 json = ('tests/fixtures/filepath1.json', 'tests/fixtures/filepath2.json')
-yaml = ('tests/fixtures/yaml_file1.yaml', 'tests/fixtures/yaml_file2.yaml')
+yaml = ('tests/fixtures/yaml_file1.yml', 'tests/fixtures/yaml_file2.yaml')
 json_yaml = ('tests/fixtures/filepath1.json', 'tests/fixtures/yaml_file2.yaml')
 
 

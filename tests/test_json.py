@@ -8,10 +8,10 @@ def file_read():
         return file_for_test.read()
 
 
-def test_json_(file_read):
-    first_json = 'tests/fixtures/filepath1.json'
-    second_json = 'tests/fixtures/filepath2.json'
-    first_yaml = 'tests/fixtures/yaml_file1.yaml'
-    second_yaml = 'tests/fixtures/yaml_file2.yaml'
-    assert generate_diff(first_json, second_json, 'json') == file_read
-    assert generate_diff(first_yaml, second_yaml, 'json') == file_read
+json = ('tests/fixtures/filepath1.json', 'tests/fixtures/filepath2.json')
+yaml = ('tests/fixtures/yaml_file1.yml', 'tests/fixtures/yaml_file2.yaml')
+
+
+@pytest.mark.parametrize('first,second', [json, yaml])
+def test_json_(first, second, file_read):
+    assert generate_diff(first, second, 'json') == file_read
