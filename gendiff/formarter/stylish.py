@@ -7,11 +7,11 @@ RM = '  - '
 ADD = '  + '
 
 
-# def stylish(tree: list) -> str:
-#     return build(tree)
+def stylish(tree: list) -> str:
+    return build(tree)
 
 
-def stylish(node, depth=0):
+def build(node, depth=0):
     if not isinstance(node, list):
         return make_str(node)
 
@@ -25,13 +25,13 @@ def stylish(node, depth=0):
 
             if status == 'updated':
                 result.append(f'{deep_size}{RM}{name}:'
-                              f' {stylish(value[0], depth + LVL)}')
+                              f' {build(value[0], depth + LVL)}')
                 result.append(f'{deep_size}{ADD}{name}:'
-                              f' {stylish(value[1], depth + LVL)}')
+                              f' {build(value[1], depth + LVL)}')
 
             else:
                 result.append(f'{deep_size}{status}{name}:'
-                              f' {stylish(value, depth + LVL)}')
+                              f' {build(value, depth + LVL)}')
 
     return '\n'.join(itertools.chain('{', result, [deep_size + '}']))
 
