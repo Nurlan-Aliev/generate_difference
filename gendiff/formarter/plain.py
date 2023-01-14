@@ -37,19 +37,19 @@ def build_way(tree, list_way):
     lst = []
 
     for index in tree:
-        for name in index:
-            list_way.append(name)
-            value = index[name]['value']
-            status = index[name]['status']
+        name = list(index.keys())[0]
+        list_way.append(name)
+        value = index[name]['value']
+        status = index[name]['status']
 
-            if status == 'not_changed' and is_list(value):
-                lst.append(build_way(value, list_way))
-                list_way.pop(-1)
+        if status == 'not_changed' and is_list(value):
+            lst.append(build_way(value, list_way))
+            list_way.pop(-1)
 
-            else:
-                str_way = '.'.join(list_way)
-                list_way.pop(-1)
-                lst.append((str_way, status, value))
+        else:
+            str_way = '.'.join(list_way)
+            list_way.pop(-1)
+            lst.append((str_way, status, value))
 
     return flatten(lst)
 

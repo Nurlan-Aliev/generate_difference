@@ -19,19 +19,19 @@ def build(node, depth=0):
     result = []
 
     for index in node:
-        for name in index:
-            value = index[name]['value']
-            status = refactor(index[name]['status'])
+        name = list(index.keys())[0]
+        value = index[name]['value']
+        status = refactor(index[name]['status'])
 
-            if status == 'updated':
-                result.append(f'{deep_size}{RM}{name}:'
-                              f' {build(value[0], depth + LVL)}')
-                result.append(f'{deep_size}{ADD}{name}:'
-                              f' {build(value[1], depth + LVL)}')
+        if status == 'updated':
+            result.append(f'{deep_size}{RM}{name}:'
+                          f' {build(value[0], depth + LVL)}')
+            result.append(f'{deep_size}{ADD}{name}:'
+                          f' {build(value[1], depth + LVL)}')
 
-            else:
-                result.append(f'{deep_size}{status}{name}:'
-                              f' {build(value, depth + LVL)}')
+        else:
+            result.append(f'{deep_size}{status}{name}:'
+                          f' {build(value, depth + LVL)}')
 
     return '\n'.join(itertools.chain('{', result, [deep_size + '}']))
 

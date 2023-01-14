@@ -37,9 +37,11 @@ def check(value_1, value_2=None):
         return value_1
 
 
-def is_dict(items):
+def is_dict(items_1, items_2=None):
     """Сhecks if an element is a dictionary"""
-    return isinstance(items, dict)
+    if items_2 is None:
+        items_2 = items_1
+    return isinstance(items_1, dict) and isinstance(items_2, dict)
 
 
 def build_base(dict_1: dict, dict_2: dict) -> list:
@@ -59,7 +61,7 @@ def build_base(dict_1: dict, dict_2: dict) -> list:
         elif key not in dict_2:
             result.append({key: {STATUS: RM, VALUE: check(value_1)}})
 
-        elif value_1 == value_2 or is_dict(value_1) and is_dict(value_2):
+        elif value_1 == value_2 or is_dict(value_1, value_2):
             result.append({key: {STATUS: NOT_CHANGE,
                                  VALUE: check(value_1, value_2)}})
 
