@@ -24,7 +24,8 @@ def generate_diff(first_file, second_file, style='stylish'):
 
 
 def check(value_1, value_2=None):
-    """Returns the difference function with the received value
+    """
+    Returns the difference function with the received value
     if the value1  is a dictionary. Otherwise returns a value.
     """
     if is_dict(value_1):
@@ -41,7 +42,7 @@ def is_dict(items):
     return isinstance(items, dict)
 
 
-def build_base(dict_1: dict, dict_2) -> list:
+def build_base(dict_1: dict, dict_2: dict) -> list:
     """Return a list of dictionaries with key, difference status and value"""
     list_keys = list(dict_1.keys() | dict_2.keys())
     list_keys.sort()

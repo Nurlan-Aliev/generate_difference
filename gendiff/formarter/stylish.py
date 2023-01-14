@@ -8,41 +8,43 @@ ADD = '  + '
 
 
 def stylish(tree: list) -> str:
+    return build(tree)
 
-    def inner(node, depth=0):
-        if not isinstance(node, list):
-            return node
 
-        deep_size = DEPTH_LINE * depth
-        result = []
+def build(node, depth=0):
+    if not isinstance(node, list):
+        return make_str(node)
 
-        for index in node:
-            for name in index:
-                value = index[name]['value']
-                status = index[name]['status']
+    deep_size = DEPTH_LINE * depth
+    result = []
 
-                if status == 'updated':
-                    result.append(f'{deep_size}{RM}{name}:'
-                                  f' {inner(make_str(value[0]), depth + LVL)}')
-                    result.append(f'{deep_size}{ADD}{name}:'
-                                  f' {inner(make_str(value[1]), depth + LVL)}')
+    for index in node:
+        for name in index:
+            value = index[name]['value']
+            status = refactor(index[name]['status'])
 
-                else:
-                    result.append(f'{deep_size}{refactor(status)}{name}:'
-                                  f' {inner(make_str(value), depth + LVL)}')
+            if status == 'updated':
+                result.append(f'{deep_size}{RM}{name}:'
+                              f' {build(value[0], depth + LVL)}')
+                result.append(f'{deep_size}{ADD}{name}:'
+                              f' {build(value[1], depth + LVL)}')
 
-        return '\n'.join(itertools.chain('{', result, [deep_size + '}']))
+            else:
+                result.append(f'{deep_size}{status}{name}:'
+                              f' {build(value, depth + LVL)}')
 
-    return inner(tree)
+    return '\n'.join(itertools.chain('{', result, [deep_size + '}']))
 
 
 def refactor(status):
     if status == 'added':
         return ADD
-    if status == 'removed':
+    elif status == 'removed':
         return RM
-    if status == 'not_changed':
+    elif status == 'not_changed':
         return DEPTH_LINE
+    else:
+        return status
 
 
 def make_str(value):
