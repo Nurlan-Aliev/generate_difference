@@ -1,7 +1,7 @@
 from gendiff.utils import open_file
 from gendiff.formarter.stylish import stylish
 from gendiff.formarter.plain import plain
-from gendiff.formarter.json_formater import json_
+from gendiff.formarter.json_formater import make_json
 
 ADD = 'added'
 RM = 'removed'
@@ -18,7 +18,7 @@ def generate_diff(first_file, second_file, style='stylish'):
     if style == 'plain':
         return plain(diff)
     elif style == 'json':
-        return json_(diff)
+        return make_json(diff)
     elif style == 'stylish':
         return stylish(diff)
 
@@ -40,7 +40,7 @@ def check(value_1, value_2=None):
 def is_dict(items_1, items_2=None):
     """Сhecks if an element is a dictionary"""
     if items_2 is None:
-        items_2 = items_1
+        return isinstance(items_1, dict)
     return isinstance(items_1, dict) and isinstance(items_2, dict)
 
 
