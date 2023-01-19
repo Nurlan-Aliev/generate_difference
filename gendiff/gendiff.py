@@ -51,22 +51,21 @@ def build_base(dict_1: dict, dict_2: dict) -> list:
     result = []
 
     for key in list_keys:
-
-        value_1 = dict_1.get(key)
-        value_2 = dict_2.get(key)
-
-        if key not in dict_1:
-            result.append({key: {STATUS: ADD, VALUE: check(value_2)}})
-
-        elif key not in dict_2:
-            result.append({key: {STATUS: RM, VALUE: check(value_1)}})
-
-        elif value_1 == value_2 or is_dict(value_1, value_2):
-            result.append({key: {STATUS: NOT_CHANGE,
-                                 VALUE: check(value_1, value_2)}})
-
-        else:
-            result.append({key: {STATUS: UPDATE,
-                                 VALUE: (check(value_1), check(value_2))}})
-
+        result.append(find_key(key, dict_1, dict_2))
     return result
+
+
+def find_key(key, dict_1, dict_2):
+    value_1 = dict_1.get(key)
+    value_2 = dict_2.get(key)
+
+    if key not in dict_1:
+        return {key: {STATUS: ADD, VALUE: check(value_2)}}
+
+    elif key not in dict_2:
+        return {key: {STATUS: RM, VALUE: check(value_1)}}
+
+    elif value_1 == value_2 or is_dict(value_1, value_2):
+        return {key: {STATUS: NOT_CHANGE, VALUE: check(value_1, value_2)}}
+    else:
+        return {key: {STATUS: UPDATE, VALUE: (check(value_1), check(value_2))}}
