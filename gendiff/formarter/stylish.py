@@ -1,7 +1,7 @@
 import itertools
 
-
-DEPTH_LINE = '    '
+indent = 4
+DEPTH_LINE = ' ' * indent
 LVL = 1
 RM = '  - '
 ADD = '  + '
