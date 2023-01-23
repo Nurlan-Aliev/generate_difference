@@ -33,22 +33,22 @@ def check_type(value):
     return f"'{value}'"
 
 
-def build_way(tree, list_way):
+def build_way(tree, list_path):
     lst = []
 
     for index in tree:
         name = list(index.keys())[0]
-        list_way.append(name)
+        list_path.append(name)
         value = index[name]['value']
         status = index[name]['status']
 
         if status == 'not_changed' and is_list(value):
-            lst.append(build_way(value, list_way))
-            list_way.pop(-1)
+            lst.append(build_way(value, list_path))
+            list_path.pop(-1)
 
         else:
-            str_way = '.'.join(list_way)
-            list_way.pop(-1)
+            str_way = '.'.join(list_path)
+            list_path.pop(-1)
             lst.append((str_way, status, value))
 
     return flatten(lst)
