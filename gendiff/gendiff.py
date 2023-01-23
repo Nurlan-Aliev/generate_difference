@@ -1,4 +1,4 @@
-from gendiff.utils import open_file
+from gendiff.utils import parse_content
 from gendiff.formarter.stylish import stylish
 from gendiff.formarter.plain import plain
 from gendiff.formarter.json_formater import make_json
@@ -12,8 +12,8 @@ VALUE = 'value'
 
 
 def generate_diff(first_file, second_file, style='stylish'):
-    open_first = open_file(first_file)
-    open_second = open_file(second_file)
+    open_first = parse_content(first_file)
+    open_second = parse_content(second_file)
     diff = build_base(open_first, open_second)
     if style == 'plain':
         return plain(diff)
@@ -46,8 +46,7 @@ def is_dict(items_1, items_2=None):
 
 def build_base(dict_1: dict, dict_2: dict) -> list:
     """Return a list of dictionaries with key, difference status and value"""
-    list_keys = list(dict_1.keys() | dict_2.keys())
-    list_keys.sort()
+    list_keys = sorted(list(dict_1.keys() | dict_2.keys()))
     result = []
 
     for key in list_keys:
