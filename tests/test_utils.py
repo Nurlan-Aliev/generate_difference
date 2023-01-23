@@ -1,4 +1,4 @@
-from gendiff.utils import open_file
+from gendiff.utils import parse_content
 import pytest
 
 
@@ -11,13 +11,13 @@ def coll():
         "follow": False}
 
 
-def test_open_file(coll):
-    assert open_file('tests/fixtures/file1.json') == coll
+def test_parse_content(coll):
+    assert parse_content('tests/fixtures/file1.json') == coll
 
-    assert open_file('tests/fixtures/first_file.yaml') == coll
+    assert parse_content('tests/fixtures/first_file.yaml') == coll
 
-    assert open_file('tests/fixtures/free.json') == {}
+    assert parse_content('tests/fixtures/free.json') == {}
 
 
 if __name__ == '__main__':
-    test_open_file()
+    test_parse_content()
