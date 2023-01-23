@@ -1,12 +1,17 @@
 import yaml
 import json
+import os
 
 
-def open_file(file1):
-    if file1.endswith('.json'):
-        with open(file1, "r") as input_file:
-            return json.load(input_file)
+def read_file(file_path):
+    return open(file_path, "r")
 
-    if file1.endswith('.yaml') or file1.endswith('.yml'):
-        with open(file1, "r") as input_file:
-            return yaml.safe_load(input_file)
+
+def parse_content(path):
+    format = os.path.splitext(path)[1]
+    contend = read_file(path)
+    if format == '.json':
+        return json.load(contend)
+
+    if format == '.yaml' or '.yml':
+        return yaml.safe_load(contend)
