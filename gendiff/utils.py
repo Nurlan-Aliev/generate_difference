@@ -4,15 +4,17 @@ import os
 
 
 def read_file(file_path):
+    _, file_type = os.path.splitext(file_path)
+
     with open(file_path, "r") as output_file:
-        return output_file.read()
+        smt = output_file.read()
+    return smt, file_type
 
 
-def parse_content(content):
-    content = read_file(content)
-    format = os.path.splitext(content)[1]
-    if format == '.json':
-        return json.load(content)
+def parse_content(content, file_type):
 
-    if format == '.yaml' or '.yml':
+    if file_type == '.json':
+        return json.loads(content)
+
+    if file_type == '.yaml' or '.yml':
         return yaml.safe_load(content)
