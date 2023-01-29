@@ -2,6 +2,16 @@ from gendiff.utils import parse_content, read_file
 import pytest
 
 
+JSON = 'tests/fixtures/file1.json'
+YAML = 'tests/fixtures/first_file.yaml'
+# FREE_FILE = 'tests/fixtures/free.json'
+
+
+@pytest.fixture
+def free():
+    return {}
+
+
 @pytest.fixture
 def coll():
     return {
@@ -11,13 +21,10 @@ def coll():
         "follow": False}
 
 
-def test_parse_content(coll):
-    content_json, type_file_json = read_file('tests/fixtures/file1.json')
+@pytest.mark.parametrize('file_path', [JSON, YAML])
+def test_parse_content(file_path, coll):
+    content_json, type_file_json = read_file(file_path)
     assert parse_content(content_json, type_file_json) == coll
-    content_yaml, type_file_yaml = read_file('tests/fixtures/first_file.yaml')
-    assert parse_content(content_yaml, type_file_yaml) == coll
-    content_free, type_file_free = read_file('tests/fixtures/free.json')
-    assert parse_content(content_free, type_file_free) == {}
 
 
 if __name__ == '__main__':

@@ -1,7 +1,7 @@
 from gendiff.utils import parse_content, read_file
 from gendiff.formarter.stylish import stylish
 from gendiff.formarter.plain import plain
-from gendiff.formarter.json_formater import json
+from gendiff.formarter.json_gendiff import json
 
 ADD = 'added'
 RM = 'removed'
