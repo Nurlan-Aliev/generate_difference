@@ -16,7 +16,7 @@ def result_plain():
 
 @pytest.fixture
 def result_json():
-    with open('tests/fixtures/file_to_test_json.json', 'r') as file_for_test:
+    with open('tests/fixtures/result_json.json', 'r') as file_for_test:
         return file_for_test.read()
 
 

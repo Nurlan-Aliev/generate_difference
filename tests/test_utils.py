@@ -1,4 +1,4 @@
-from gendiff.utils import parse_content
+from gendiff.utils import parse_content, read_file
 import pytest
 
 
@@ -12,11 +12,12 @@ def coll():
 
 
 def test_parse_content(coll):
-    assert parse_content('tests/fixtures/file1.json') == coll
-
-    assert parse_content('tests/fixtures/first_file.yaml') == coll
-
-    assert parse_content('tests/fixtures/free.json') == {}
+    content_json, type_file_json = read_file('tests/fixtures/file1.json')
+    assert parse_content(content_json, type_file_json) == coll
+    content_yaml, type_file_yaml = read_file('tests/fixtures/first_file.yaml')
+    assert parse_content(content_yaml, type_file_yaml) == coll
+    content_free, type_file_free = read_file('tests/fixtures/free.json')
+    assert parse_content(content_free, type_file_free) == {}
 
 
 if __name__ == '__main__':
