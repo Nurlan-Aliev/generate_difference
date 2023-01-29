@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = "for generate difference between two files (json or yaml)"
+description = "For generate difference between two files (json or yaml)"
 authors = ["Aliev Nurlan <nualiev420@gmail.com>"]
 readme = "README.md"
 packages = [{include = "gendiff"}]
