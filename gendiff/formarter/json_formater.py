@@ -1,5 +1,5 @@
-import json
+from json import dumps
 
 
-def make_json(tree) -> json:
-    return json.dumps(tree, indent=2)
+def json(tree):
+    return dumps(tree, indent=2)
