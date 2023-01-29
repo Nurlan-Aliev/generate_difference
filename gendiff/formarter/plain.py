@@ -2,25 +2,25 @@ from gendiff.formarter.stylish import make_str
 
 
 def plain(tree: list) -> str:
-    result = build_way(tree, [])
+    path = build_path(tree, [])
 
-    lst = []
-    for i in result:
-        name, status, value = i
+    result = []
+    for element in path:
+        name, status, value = element
 
         if status == 'added':
-            lst.append(f"Property '{name}' "
-                       f"was added with value: {check_type(value)}")
+            result.append(f"Property '{name}' "
+                          f"was added with value: {check_type(value)}")
 
         if status == 'removed':
-            lst.append(f"Property '{name}' was removed")
+            result.append(f"Property '{name}' was removed")
 
         if status == 'updated':
             rm, add = value
-            lst.append(f"Property '{name}' was updated. "
-                       f'From {check_type(rm)} to {check_type(add)}')
+            result.append(f"Property '{name}' was updated. "
+                          f"From {check_type(rm)} to {check_type(add)}")
 
-    return '\n'.join(lst)
+    return '\n'.join(result)
 
 
 def check_type(value):
@@ -33,8 +33,8 @@ def check_type(value):
     return f"'{value}'"
 
 
-def build_way(tree, list_path):
-    lst = []
+def build_path(tree, list_path):
+    result = []
 
     for index in tree:
         name = list(index.keys())[0]
@@ -42,16 +42,16 @@ def build_way(tree, list_path):
         value = index[name]['value']
         status = index[name]['status']
 
-        if status == 'not_changed' and is_list(value):
-            lst.append(build_way(value, list_path))
+        if status == 'nested':
+            result.append(build_path(value, list_path))
             list_path.pop(-1)
 
         else:
             str_way = '.'.join(list_path)
             list_path.pop(-1)
-            lst.append((str_way, status, value))
+            result.append((str_way, status, value))
 
-    return flatten(lst)
+    return flatten(result)
 
 
 def normalize(item):

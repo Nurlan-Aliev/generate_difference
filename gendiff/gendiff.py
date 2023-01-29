@@ -1,7 +1,7 @@
-from gendiff.utils import parse_content
+from gendiff.utils import parse_content, read_file
 from gendiff.formarter.stylish import stylish
 from gendiff.formarter.plain import plain
-from gendiff.formarter.json_formater import make_json
+from gendiff.formarter.json_formater import json
 
 ADD = 'added'
 RM = 'removed'
@@ -9,16 +9,22 @@ NOT_CHANGE = 'not_changed'
 UPDATE = 'updated'
 STATUS = 'status'
 VALUE = 'value'
+PARENT = 'nested'
 
 
 def generate_diff(first_file, second_file, style='stylish'):
-    open_first = parse_content(first_file)
-    open_second = parse_content(second_file)
-    diff = build_base(open_first, open_second)
+    file_content_1, file_type_1 = read_file(first_file)
+    file_content_2, file_type_2 = read_file(second_file)
+    dict_1 = parse_content(file_content_1, file_type_1)
+    dict_2 = parse_content(file_content_2, file_type_2)
+    diff = build_base(dict_1, dict_2)
+
     if style == 'plain':
         return plain(diff)
+
     elif style == 'json':
-        return make_json(diff)
+        return json(diff)
+
     elif style == 'stylish':
         return stylish(diff)
 
@@ -64,7 +70,11 @@ def find_key(key, dict_1, dict_2):
     elif key not in dict_2:
         return {key: {STATUS: RM, VALUE: check(value_1)}}
 
-    elif value_1 == value_2 or is_dict(value_1, value_2):
+    elif value_1 == value_2:
         return {key: {STATUS: NOT_CHANGE, VALUE: check(value_1, value_2)}}
+
+    elif is_dict(value_1, value_2):
+        return {key: {STATUS: PARENT, VALUE: check(value_1, value_2)}}
+
     else:
         return {key: {STATUS: UPDATE, VALUE: (check(value_1), check(value_2))}}

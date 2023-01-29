@@ -1,7 +1,7 @@
 import itertools
 
-indent = 4
-DEPTH_LINE = ' ' * indent
+INDENT = 4
+DEPTH_LINE = ' ' * INDENT
 LVL = 1
 RM = '  - '
 ADD = '  + '
@@ -42,6 +42,8 @@ def refactor(status):
     elif status == 'removed':
         return RM
     elif status == 'not_changed':
+        return DEPTH_LINE
+    elif status == 'nested':
         return DEPTH_LINE
     else:
         return status

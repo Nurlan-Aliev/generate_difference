@@ -7,8 +7,8 @@ def read_file(file_path):
     _, file_type = os.path.splitext(file_path)
 
     with open(file_path, "r") as output_file:
-        smt = output_file.read()
-    return smt, file_type
+        content = output_file.read()
+    return content, file_type
 
 
 def parse_content(content, file_type):
