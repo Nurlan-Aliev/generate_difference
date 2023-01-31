@@ -11,8 +11,10 @@ classifiers = ["Topic :: system :: filesystems"]
 [tool.poetry.dependencies]
 python = "^3.8.1"
 pyyaml = "^6.0"
-pytest-cov = "^4.0.0"
 
+[tool.poetry.group.test]
+pytest-cov = "^4.0.0"
+flake8-cognitive-complexity = "^0.1.0"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
