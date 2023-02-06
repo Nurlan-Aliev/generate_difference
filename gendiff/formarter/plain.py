@@ -1,4 +1,4 @@
-from gendiff.formarter.stylish import make_str
+from gendiff.make_str import make_str
 
 
 def plain(tree: list) -> str:
@@ -24,7 +24,7 @@ def plain(tree: list) -> str:
 
 
 def check_type(value):
-    if is_list(value):
+    if isinstance(value, list):
         return '[complex value]'
 
     if isinstance(value, (bool, int)) or value is None:
@@ -33,34 +33,30 @@ def check_type(value):
     return f"'{value}'"
 
 
-def build_path(tree, list_path):
+def build_path(tree, paths):
     result = []
 
     for index in tree:
         name = list(index.keys())[0]
-        list_path.append(name)
+        paths.append(name)
         value = index[name]['value']
         status = index[name]['status']
 
         if status == 'nested':
-            result.append(build_path(value, list_path))
-            list_path.pop(-1)
+            result.append(build_path(value, paths))
+            paths.pop(-1)
 
         else:
-            str_way = '.'.join(list_path)
-            list_path.pop(-1)
-            result.append((str_way, status, value))
+            str_path = '.'.join(paths)
+            paths.pop(-1)
+            result.append((str_path, status, value))
 
     return flatten(result)
 
 
 def normalize(item):
-    return flatten(item) if is_list(item) else [item]
+    return flatten(item) if isinstance(item, list) else [item]
 
 
 def flatten(tree):
     return sum(map(normalize, tree), [])
-
-
-def is_list(value):
-    return isinstance(value, list)

@@ -1,4 +1,5 @@
 import itertools
+from gendiff.make_str import make_str
 
 INDENT = 4
 DEPTH_LINE = ' ' * INDENT
@@ -47,14 +48,3 @@ def refactor(status):
         return DEPTH_LINE
     else:
         return status
-
-
-def make_str(value):
-    """Casts None to null, bool to str"""
-    if isinstance(value, bool):
-        return str(value).lower()
-
-    elif value is None:
-        return 'null'
-
-    return value
