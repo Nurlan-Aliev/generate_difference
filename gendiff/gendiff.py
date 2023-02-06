@@ -1,7 +1,7 @@
 from gendiff.utils import parse_content, read_file
 from gendiff.formarter.stylish import stylish
 from gendiff.formarter.plain import plain
-from gendiff.formarter.json_gendiff import json
+from gendiff.formarter.json import json
 
 ADD = 'added'
 RM = 'removed'
@@ -13,11 +13,11 @@ PARENT = 'nested'
 
 
 def generate_diff(first_file, second_file, style='stylish'):
-    file_content_1, file_type_1 = read_file(first_file)
-    file_content_2, file_type_2 = read_file(second_file)
-    dict_1 = parse_content(file_content_1, file_type_1)
-    dict_2 = parse_content(file_content_2, file_type_2)
-    diff = build_base(dict_1, dict_2)
+    first_file_content, first_file_type = read_file(first_file)
+    second_file_content, second_file_type = read_file(second_file)
+    first_dict= parse_content(first_file_content, first_file_type)
+    second_dict = parse_content(second_file_content, second_file_type)
+    diff = build_base(first_dict, second_dict)
 
     if style == 'plain':
         return plain(diff)
@@ -52,10 +52,10 @@ def is_dict(items_1, items_2=None):
 
 def build_base(dict_1: dict, dict_2: dict) -> list:
     """Return a list of dictionaries with key, difference status and value"""
-    list_keys = sorted(list(dict_1.keys() | dict_2.keys()))
+    keys = sorted(list(dict_1.keys() | dict_2.keys()))
     result = []
 
-    for key in list_keys:
+    for key in keys:
         result.append(find_key(key, dict_1, dict_2))
     return result
 
