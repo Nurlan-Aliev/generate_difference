@@ -15,7 +15,7 @@ PARENT = 'nested'
 def generate_diff(first_file, second_file, style='stylish'):
     first_file_content, first_file_type = read_file(first_file)
     second_file_content, second_file_type = read_file(second_file)
-    first_dict= parse_content(first_file_content, first_file_type)
+    first_dict = parse_content(first_file_content, first_file_type)
     second_dict = parse_content(second_file_content, second_file_type)
     diff = build_base(first_dict, second_dict)
 
