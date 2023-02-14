@@ -27,7 +27,3 @@ JSON = ('json', result_json)
 @pytest.mark.parametrize('formate,result', [STYLISH, PLAIN, JSON])
 def test_cli(formate, result):
     assert cli([first, second, '-f', formate]) == result()
-
-
-if __name__ == '__main__':
-    test_cli()

@@ -43,22 +43,22 @@ The output was in JSON format. With value as a dictionary with two keys status a
 
  ## Installation
 Clone the repository and install manually.
-```commandline
+```bash
 $ git clone https://github.com/Nurlan-Aliev/python-project-50.git
 $ cd python-project-50
 ```
 
 #### Install using pip
-```
-python3 -m build
-python3 -m pip install --user dist/*.whl
+```bash
+$ python3 -m build
+$ python3 -m pip install --user dist/*.whl
 ```
 
 ## Start Game
 
 For start using enter gendiff name of first file name of second file.</br>
 Use -f (plain, json) for choose format 
-```commandline
+```bash
 $ gendiff first_file.json second second_file.json
 $ gendiff -f plain first_file.json second second_file.json
 $ gendiff -f json first_file.json second second_file.json

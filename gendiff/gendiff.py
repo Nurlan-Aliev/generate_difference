@@ -1,4 +1,4 @@
-from gendiff.utils import parse_content, read_file
+from gendiff.utils import open_file
 from gendiff.formarter.stylish import stylish
 from gendiff.formarter.plain import plain
 from gendiff.formarter.json import json
@@ -13,10 +13,9 @@ PARENT = 'nested'
 
 
 def generate_diff(first_file, second_file, style='stylish'):
-    first_file_content, first_file_type = read_file(first_file)
-    second_file_content, second_file_type = read_file(second_file)
-    first_dict = parse_content(first_file_content, first_file_type)
-    second_dict = parse_content(second_file_content, second_file_type)
+    first_dict = open_file(first_file)
+    second_dict = open_file(second_file)
+
     diff = build_base(first_dict, second_dict)
 
     if style == 'plain':

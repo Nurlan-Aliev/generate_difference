@@ -29,7 +29,3 @@ PATH_2 = ('tests/fixtures/filepath2.json', 'tests/fixtures/yaml_file2.yaml')
 @pytest.mark.parametrize('formate,result', [STYLISH, PLAIN, JSON])
 def test_case(first, second, formate, result):
     assert generate_diff(first, second, formate) == result()
-
-
-if __name__ == '__main__':
-    test_case()
